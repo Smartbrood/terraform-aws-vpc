@@ -1,46 +1,53 @@
 variable "region" { 
+  description = "The AWS region."
+}
 
+variable "enable_dns_hostnames" { 
+  default = true 
+  description = "Enable dns hostnames for VPC."
+}
+
+variable "enable_dns_support" { 
+  default = true 
+  description = "Enable dns support for VPC."
+}
+
+variable "map_public_ip_on_launch" { 
+  default = true 
+  description = "Map public ip on launch in public subnets."
 }
 
 variable "vpc_cidr" { 
-  default = "10.0.0.0/16" 
-  description = "CIDR ip addresses block for VPC"
+  description = "The CIDR ip addresses block for VPC."
 }
 
 variable "public_subnet_a" { 
-  default = "10.0.1.0/24"
+  description = "The CIDR ip addresses block for public subnet in zone a."
 }
 
 variable "public_subnet_b" { 
-  default = "10.0.2.0/24"
+  description = "The CIDR ip addresses block for public subnet in zone b."
 }
 
 variable "public_subnet_c" { 
-  default = "10.0.3.0/24"
+  description = "The CIDR ip addresses block for public subnet in zone c."
 }
 
 variable "private_subnet_a" { 
-  default = "10.0.11.0/24"
+  description = "The CIDR ip addresses block for private subnet in zone a."
 }
 
-variable "public_subnet_b" { 
-  default = "10.0.12.0/24"
+variable "private_subnet_b" { 
+  description = "The CIDR ip addresses block for private subnet in zone b."
 }
 
-variable "public_subnet_c" { 
-  default = "10.0.13.0/24"
+variable "private_subnet_c" { 
+  description = "The CIDR ip addresses block for private subnet in zone c."
 }
 
 variable "tags" {
   type = "map"
   default = {
-    Name = "Stage"
     Terraform   = "true"
   }
 }
-
-
-
-
-
-

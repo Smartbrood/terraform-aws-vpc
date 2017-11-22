@@ -1,8 +1,8 @@
 resource "aws_vpc" "this" {
   cidr_block           = "${var.cidr_block}"
   instance_tenancy     = "default"
-  enable_dns_hostnames = true
-  enable_dns_support   = true
+  enable_dns_hostnames = "${var.enable_dns_hostnames}"
+  enable_dns_support   = "${var.enable_dns_support}"
   tags                 = "${var.tags}"
 }
 
@@ -11,7 +11,7 @@ resource "aws_subnet" "public_subnet_a" {
   cidr_block        = "${var.public_subnet_a}"
   availability_zone = "${var.region}a"
   tags              = "${var.tags}"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = "${var.map_public_ip_on_launch}"
 }
 
 resource "aws_subnet" "public_subnet_b" {
