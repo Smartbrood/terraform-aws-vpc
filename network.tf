@@ -1,5 +1,5 @@
 resource "aws_vpc" "this" {
-  cidr_block           = "${var.cidr_block}"
+  cidr_block           = "${var.vpc_cidr}"
   instance_tenancy     = "default"
   enable_dns_hostnames = "${var.enable_dns_hostnames}"
   enable_dns_support   = "${var.enable_dns_support}"
@@ -76,7 +76,7 @@ resource "aws_route_table_association" "private_subnet_b" {
   route_table_id = "${aws_route_table.private.id}"
 }
 
-resource "aws_route_table_association" "private_subnet_b" {
+resource "aws_route_table_association" "private_subnet_с" {
   subnet_id      = "${aws_subnet.private_subnet_c.id}"
   route_table_id = "${aws_route_table.private.id}"
 }
