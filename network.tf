@@ -10,7 +10,7 @@ resource "aws_subnet" "public_subnet_a" {
   vpc_id            = "${aws_vpc.this.id}"
   cidr_block        = "${var.public_subnet_a}"
   availability_zone = "${var.region}a"
-  tags              = "${var.tags}"
+  tags              = "${merge(var.tags, map("Name", "public_subnet_a"))}" 
   map_public_ip_on_launch = "${var.map_public_ip_on_launch}"
 }
 
@@ -18,7 +18,7 @@ resource "aws_subnet" "public_subnet_b" {
   vpc_id            = "${aws_vpc.this.id}"
   cidr_block        = "${var.public_subnet_b}"
   availability_zone = "${var.region}b"
-  tags              = "${var.tags}"
+  tags              = "${merge(var.tags, map("Name", "public_subnet_b"))}" 
   map_public_ip_on_launch = true
 }
 
@@ -26,7 +26,7 @@ resource "aws_subnet" "public_subnet_c" {
   vpc_id            = "${aws_vpc.this.id}"
   cidr_block        = "${var.public_subnet_c}"
   availability_zone = "${var.region}c"
-  tags              = "${var.tags}"
+  tags              = "${merge(var.tags, map("Name", "public_subnet_c"))}" 
   map_public_ip_on_launch = true
 }
 
@@ -34,31 +34,31 @@ resource "aws_subnet" "private_subnet_a" {
   vpc_id            = "${aws_vpc.this.id}"
   cidr_block        = "${var.private_subnet_a}"
   availability_zone = "${var.region}a"
-  tags              = "${var.tags}"
+  tags              = "${merge(var.tags, map("Name", "private_subnet_a"))}" 
 }
 
 resource "aws_subnet" "private_subnet_b" {
   vpc_id            = "${aws_vpc.this.id}"
   cidr_block        = "${var.private_subnet_b}"
   availability_zone = "${var.region}b"
-  tags              = "${var.tags}"
+  tags              = "${merge(var.tags, map("Name", "private_subnet_b"))}" 
 }
 
 resource "aws_subnet" "private_subnet_c" {
   vpc_id            = "${aws_vpc.this.id}"
   cidr_block        = "${var.private_subnet_c}"
   availability_zone = "${var.region}c"
-  tags              = "${var.tags}"
+  tags              = "${merge(var.tags, map("Name", "private_subnet_c"))}" 
 }
 
 resource "aws_route_table" "public" {
   vpc_id = "${aws_vpc.this.id}"
-  tags   = "${var.tags}"
+  tags   = "${merge(var.tags, map("Name", "public"))}" 
 }
 
 resource "aws_route_table" "private" {
   vpc_id = "${aws_vpc.this.id}"
-  tags   = "${var.tags}"
+  tags   = "${merge(var.tags, map("Name", "private"))}" 
 }
 
 resource "aws_main_route_table_association" "public" {
@@ -83,7 +83,7 @@ resource "aws_route_table_association" "private_subnet_b" {
 
 resource "aws_internet_gateway" "public" {
   vpc_id = "${aws_vpc.this.id}"
-  tags   = "${var.tags}"
+  tags   = "${merge(var.tags, map("Name", "public"))}" 
 }
 
 resource "aws_route" "public_to_internet" {
