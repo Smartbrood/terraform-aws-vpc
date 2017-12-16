@@ -1,6 +1,7 @@
 data "null_data_source" "values" {
   inputs = {
     vpc                   = "${aws_vpc.this.id}"
+    vpc_cidr_block        = "${aws_vpc.this.cidr_block}" 
     public_subnet_a       = "${aws_subnet.public_subnet_a.id}"
     public_subnet_b       = "${aws_subnet.public_subnet_b.id}"
     public_subnet_c       = "${aws_subnet.public_subnet_c.id}"
